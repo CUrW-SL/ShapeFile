@@ -2,3 +2,5 @@ venv1/
 .idea/
 input/
 output/
+util/__pycache__/
+__pycache__

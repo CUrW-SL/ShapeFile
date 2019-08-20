@@ -181,10 +181,11 @@ try:
     # INPUT_MODE = 'Case3_168hrs'
     # INPUT_MODE = 'Case5_168hrs'
     # INPUT_MODE = 'Intervention_2019_01_16'
-    INPUT_MODE = 'MAXWSELEV_Existing'
+    INPUT_MODE = '25yr_4PUMPS_0.3m_ini_wl'
 
     # FLO2D_MODEL = 'FLO2D_30'
-    FLO2D_MODEL = 'FLO2D_150'
+    # FLO2D_MODEL = 'FLO2D_150'
+    FLO2D_MODEL = 'FLO2D_250'
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hm:i:", [
             "help", "model=", "input="])

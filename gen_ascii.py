@@ -135,7 +135,7 @@ try:
     buf_size = 65536
     GRID_SIZE = 250
 
-    MODEL_FOLDER = 'input/Case3_50yr-HK-With_Northlock_2Pumps/'
+    MODEL_FOLDER = 'input/25yr_4PUMPS_0.3m_ini_wl/'
     TIMEDEP_FILE_PATH = MODEL_FOLDER + 'TIMDEP.OUT'
     # TIMEDEP_S_FILE_PATH = 'TIMDEP_S.OUT'
     CADPTS_DAT_FILE_PATH = MODEL_FOLDER + 'CADPTS.DAT'
