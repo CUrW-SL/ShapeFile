@@ -44,7 +44,7 @@ def get_water_level_grid(lines):
     return waterLevels
 
 
-def get_esri_grid(waterLevels, boudary, CellMap, gap=30.0, missingVal=-9):
+def get_esri_grid(waterLevels, boudary, CellMap, gap=30.0, missingVal=-9999):
     "Esri GRID format : https://en.wikipedia.org/wiki/Esri_grid"
     "ncols         4"
     "nrows         6"
@@ -68,9 +68,10 @@ def get_esri_grid(waterLevels, boudary, CellMap, gap=30.0, missingVal=-9):
     #yllcorner:482565.00000
 
     cols = int(math.ceil((boudary['long_max'] - boudary['long_min']) / gap)) + 1
-    #rows = int(math.ceil((boudary['lat_max'] - boudary['lat_min']) / gap)) + 1
-    rows = 533
-    #print('>>>>>  cols: %d, rows: %d' % (cols, rows))
+    # cols = 492
+    rows = int(math.ceil((boudary['lat_max'] - boudary['lat_min']) / gap)) + 1
+    # rows = 533
+    print('>>>>>  cols: %d, rows: %d' % (cols, rows))
 
     Grid = [[missingVal for x in range(cols)] for y in range(rows)]
 
@@ -158,6 +159,7 @@ def get_cell_grid(boudary, gap=30.0):
 
 
 def read_input(input_path):
+    print('read_input|input_path:', input_path)
     try:
         topo_df = pd.read_csv(input_path+'TOPO.DAT', sep="\s+", names=['x', 'y', 'ground_elv'])
 
@@ -175,11 +177,29 @@ def read_input(input_path):
 
 
 try:
+    # INPUT_MODE = 'Case1_168hrs'
+    # INPUT_MODE = 'Case3_168hrs'
+    # INPUT_MODE = 'Case5_168hrs'
+    # INPUT_MODE = 'Intervention_2019_01_16'
+    INPUT_MODE = 'MAXWSELEV_Existing'
 
-    INPUT_MODE = 'LK_50'
-    INPUT_PATH = 'input/'+INPUT_MODE+'/'
-    FLO2D_MODEL = 'FLO2D_30'
-    GRID_SIZE = 30
+    # FLO2D_MODEL = 'FLO2D_30'
+    FLO2D_MODEL = 'FLO2D_150'
+    try:
+        opts, args = getopt.getopt(sys.argv[1:], "hm:i:", [
+            "help", "model=", "input="])
+    except getopt.GetoptError:
+        usage()
+        sys.exit(2)
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            usage()
+            sys.exit()
+        elif opt in ("-m", "--model"):
+            FLO2D_MODEL = arg
+        elif opt in ("-i", "--input"):
+            INPUT_MODE = arg
+    INPUT_PATH = 'input/' + INPUT_MODE + '/'
     WATER_LEVEL_DEPTH_MIN = 0.3
     SHAPE_DATA_FILE = 'output/'+INPUT_MODE+'_shape_data.csv'
     OUTPUT_DIR = 'output'
