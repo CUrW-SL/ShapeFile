@@ -135,20 +135,30 @@ try:
     buf_size = 65536
     GRID_SIZE = 250
 
-    MODEL_FOLDER = 'input/25yr_4PUMPS_0.3m_ini_wl/'
-    TIMEDEP_FILE_PATH = MODEL_FOLDER + 'TIMDEP.OUT'
-    # TIMEDEP_S_FILE_PATH = 'TIMDEP_S.OUT'
-    CADPTS_DAT_FILE_PATH = MODEL_FOLDER + 'CADPTS.DAT'
-    WATER_LEVEL_FILE = 'water_level.asc'
-    ASCII_DIR = MODEL_FOLDER + 'ASCII'
-    START_HOUR = 0.00
-    END_HOUR = 96.00
-    WATER_LEVEL_DEPTH_MIN = 0.3
+    # MODEL_FOLDER = 'input/25yr_4PUMPS_0.3m_ini_wl/'
+    # MODEL_FOLDER = 'input/25yr_4PUMPS_0.4m_ini_wl/'
+    # MODEL_FOLDER = 'input/25yr_4PUMPS_0.5m_ini_wl/'
+    #
+    # MODEL_FOLDER = 'input/25yr_5PUMPS_0.3m_ini_wl/'
+    # MODEL_FOLDER = 'input/25yr_5PUMPS_0.4m_ini_wl/'
+    # MODEL_FOLDER = 'input/25yr_5PUMPS_0.5m_ini_wl/'
+    #
+    # MODEL_FOLDER = 'input/50yr_4PUMPS_0.3m_ini_wl/'
+    # MODEL_FOLDER = 'input/50yr_4PUMPS_0.4m_ini_wl/'
+    # MODEL_FOLDER = 'input/50yr_4PUMPS_0.5m_ini_wl/'
+    #
+    # MODEL_FOLDER = 'input/50yr_5PUMPS_0.3m_ini_wl/'
+    # MODEL_FOLDER = 'input/50yr_5PUMPS_0.4m_ini_wl/'
+    # MODEL_FOLDER = 'input/50yr_5PUMPS_0.5m_ini_wl/'
+
+    # MODEL_FOLDER = 'input/4PUMPS/'
+    # MODEL_FOLDER = 'input/ALL_5PUMPS/'
+
     # output_file = open(TIMEDEP_S_FILE_PATH, 'w')
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "s:e:d:",
-                                   ["start=", "end=", "date="])
+        opts, args = getopt.getopt(sys.argv[1:], "s:e:i:",
+                                   ["start=", "end=", "input="])
     except getopt.GetoptError as er:
         print('GetoptError : ', er)
         print('opts : ', opts)
@@ -159,12 +169,21 @@ try:
             START_HOUR = float(arg)
         elif opt in ("-e", "--end"):
             END_HOUR = float(arg)
-        # elif opt in ("-d", "--date"):
-        #     RUN_DATE = arg
+        elif opt in ("-i", "--input"):
+            INPUT = arg
     RUN_DATE = datetime.datetime.now().strftime("%Y-%m-%d")
     print('{START_HOUR, END_HOUR, RUN_DATE}: ', {START_HOUR, END_HOUR, RUN_DATE})
     RUN_DATE = datetime.datetime.strptime(RUN_DATE, '%Y-%m-%d')
+    MODEL_FOLDER = 'input/{}/'.format(INPUT)
 
+    TIMEDEP_FILE_PATH = MODEL_FOLDER + 'TIMDEP.OUT'
+    # TIMEDEP_S_FILE_PATH = 'TIMDEP_S.OUT'
+    CADPTS_DAT_FILE_PATH = MODEL_FOLDER + 'CADPTS.DAT'
+    WATER_LEVEL_FILE = 'water_level.asc'
+    ASCII_DIR = MODEL_FOLDER + 'ASCII'
+    START_HOUR = 0.00
+    END_HOUR = 96.00
+    WATER_LEVEL_DEPTH_MIN = 0.3
     if not os.path.exists(ASCII_DIR):
         os.makedirs(ASCII_DIR)
 

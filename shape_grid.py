@@ -177,11 +177,25 @@ def read_input(input_path):
 
 
 try:
-    # INPUT_MODE = 'Case1_168hrs'
-    # INPUT_MODE = 'Case3_168hrs'
-    # INPUT_MODE = 'Case5_168hrs'
-    # INPUT_MODE = 'Intervention_2019_01_16'
-    INPUT_MODE = '25yr_4PUMPS_0.3m_ini_wl'
+    # INPUT_MODE = '25yr_4PUMPS_0.3m_ini_wl'
+    # INPUT_MODE = '25yr_4PUMPS_0.4m_ini_wl'
+    # INPUT_MODE = '25yr_4PUMPS_0.5m_ini_wl'
+    #
+    # INPUT_MODE = '25yr_5PUMPS_0.3m_ini_wl'
+    # INPUT_MODE = '25yr_5PUMPS_0.4m_ini_wl'
+    # INPUT_MODE = '25yr_5PUMPS_0.5m_ini_wl'
+    #
+    # INPUT_MODE = '50yr_4PUMPS_0.3m_ini_wl'
+    # INPUT_MODE = '50yr_4PUMPS_0.4m_ini_wl'
+    # INPUT_MODE = '50yr_4PUMPS_0.5m_ini_wl'
+    #
+    # INPUT_MODE = '50yr_5PUMPS_0.3m_ini_wl'
+    # INPUT_MODE = '50yr_5PUMPS_0.4m_ini_wl'
+    # INPUT_MODE = '50yr_5PUMPS_0.5m_ini_wl'
+
+    # INPUT_MODE = '4PUMPS'
+    # INPUT_MODE = 'ALL_5PUMPS'
+    INPUT_MODE = 'WITHOUT_ANY_PUMPS'
 
     # FLO2D_MODEL = 'FLO2D_30'
     # FLO2D_MODEL = 'FLO2D_150'
