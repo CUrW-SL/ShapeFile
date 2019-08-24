@@ -133,8 +133,6 @@ def get_cell_grid(boudary, gap=250.0):
 
 try:
     buf_size = 65536
-    GRID_SIZE = 250
-
     # MODEL_FOLDER = 'input/25yr_4PUMPS_0.3m_ini_wl/'
     # MODEL_FOLDER = 'input/25yr_4PUMPS_0.4m_ini_wl/'
     # MODEL_FOLDER = 'input/25yr_4PUMPS_0.5m_ini_wl/'
@@ -155,10 +153,11 @@ try:
     # MODEL_FOLDER = 'input/ALL_5PUMPS/'
 
     # output_file = open(TIMEDEP_S_FILE_PATH, 'w')
-
+    GRID_SIZE = 10
+    INPUT = '10m_saundersplace'
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "s:e:i:",
-                                   ["start=", "end=", "input="])
+        opts, args = getopt.getopt(sys.argv[1:], "s:e:i:g:",
+                                   ["start=", "end=", "input=", "grid="])
     except getopt.GetoptError as er:
         print('GetoptError : ', er)
         print('opts : ', opts)
@@ -171,8 +170,9 @@ try:
             END_HOUR = float(arg)
         elif opt in ("-i", "--input"):
             INPUT = arg
+        elif opt in ("-g", "--grid"):
+            GRID_SIZE = int(arg)
     RUN_DATE = datetime.datetime.now().strftime("%Y-%m-%d")
-    print('{START_HOUR, END_HOUR, RUN_DATE}: ', {START_HOUR, END_HOUR, RUN_DATE})
     RUN_DATE = datetime.datetime.strptime(RUN_DATE, '%Y-%m-%d')
     MODEL_FOLDER = 'input/{}/'.format(INPUT)
 
