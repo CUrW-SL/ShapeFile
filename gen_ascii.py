@@ -154,7 +154,8 @@ try:
 
     # output_file = open(TIMEDEP_S_FILE_PATH, 'w')
     GRID_SIZE = 10
-    INPUT = '10m_saundersplace'
+    INPUT = 'Torington10m'
+    # INPUT = '10m_saundersplace'
     try:
         opts, args = getopt.getopt(sys.argv[1:], "s:e:i:g:",
                                    ["start=", "end=", "input=", "grid="])
@@ -183,7 +184,7 @@ try:
     ASCII_DIR = MODEL_FOLDER + 'ASCII'
     START_HOUR = 0.00
     END_HOUR = 96.00
-    WATER_LEVEL_DEPTH_MIN = 0.3
+    WATER_LEVEL_DEPTH_MIN = 0.15
     if not os.path.exists(ASCII_DIR):
         os.makedirs(ASCII_DIR)
 
