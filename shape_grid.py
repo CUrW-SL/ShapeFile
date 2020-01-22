@@ -195,11 +195,13 @@ try:
 
     # INPUT_MODE = '4PUMPS'
     # INPUT_MODE = 'ALL_5PUMPS'
-    INPUT_MODE = 'WITHOUT_ANY_PUMPS'
+    # INPUT_MODE = 'WITHOUT_ANY_PUMPS'
+    INPUT_MODE = 'Sim6'
 
     # FLO2D_MODEL = 'FLO2D_30'
     # FLO2D_MODEL = 'FLO2D_150'
-    FLO2D_MODEL = 'FLO2D_250'
+    # FLO2D_MODEL = 'FLO2D_250'
+    FLO2D_MODEL = 'FLO2D_10'
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hm:i:", [
             "help", "model=", "input="])
@@ -235,12 +237,16 @@ try:
         GRID_SIZE = 250.0
         appDir = OUTPUT_DIR
     elif FLO2D_MODEL == 'FLO2D_150':
-        print("FLO2D_MODEL : ",FLO2D_MODEL)
+        print("FLO2D_MODEL : ", FLO2D_MODEL)
         GRID_SIZE = 150.0
         appDir = OUTPUT_DIR
     elif FLO2D_MODEL == 'FLO2D_30':
-        print("FLO2D_MODEL : ",FLO2D_MODEL)
+        print("FLO2D_MODEL : ", FLO2D_MODEL)
         GRID_SIZE = 30.0
+        appDir = OUTPUT_DIR
+    elif FLO2D_MODEL == 'FLO2D_10':
+        print("FLO2D_MODEL : ", FLO2D_MODEL)
+        GRID_SIZE = 10.0
         appDir = OUTPUT_DIR
 
     print('Processing FLO2D model on', appDir)
