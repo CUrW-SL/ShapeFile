@@ -196,7 +196,7 @@ try:
     # INPUT_MODE = '4PUMPS'
     # INPUT_MODE = 'ALL_5PUMPS'
     # INPUT_MODE = 'WITHOUT_ANY_PUMPS'
-    INPUT_MODE = 'Sim6'
+    INPUT_MODE = '2010_Diyasaru_pump'
 
     # FLO2D_MODEL = 'FLO2D_30'
     # FLO2D_MODEL = 'FLO2D_150'

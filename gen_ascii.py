@@ -153,9 +153,11 @@ try:
     # MODEL_FOLDER = 'input/ALL_5PUMPS/'
 
     # output_file = open(TIMEDEP_S_FILE_PATH, 'w')
-    GRID_SIZE = 10
-    INPUT = 'Torington10m'
-    # INPUT = '10m_saundersplace'
+    GRID_SIZE = 5
+    # INPUT = 'Saunders-Existing'
+    INPUT = 'Saunders-Storage'
+    # INPUT = 'Torrington-Excisting'
+    # INPUT = 'Torrington-tertiary-drain'
     try:
         opts, args = getopt.getopt(sys.argv[1:], "s:e:i:g:",
                                    ["start=", "end=", "input=", "grid="])
