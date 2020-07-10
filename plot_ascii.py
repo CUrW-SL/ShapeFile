@@ -6,6 +6,7 @@ import decimal
 import pandas as pd
 import numpy as np
 import linecache
+import matplotlib.pyplot as plt
 
 
 def get_water_level_grid(lines):
@@ -198,11 +199,41 @@ def create_single_ascii(cadpts_file, grid_size, shape_data_file, water_level_dir
         return shape_ascii_file
 
 
-def create_esri_grid_plot(ascii_file):
+def create_esri_grid_plot(ascii_file, plot_image_file):
     ascii_data = np.loadtxt(ascii_file, skiprows=6)
-    line1 = linecache.getline(ascii_file, 1)
+
+    ncols = int(linecache.getline(ascii_file, 1).split('	')[1])
+    nrows = int(linecache.getline(ascii_file, 2).split('	')[1])
+    xllcorner = float(linecache.getline(ascii_file, 3).split('	')[1])
+    yllcorner = float(linecache.getline(ascii_file, 4).split('	')[1])
+    cellsize = float(linecache.getline(ascii_file, 5).split('	')[1])
+    NODATA_value = float(linecache.getline(ascii_file, 6).split('	')[1])
+
+    ascii_data[ascii_data == NODATA_value] = np.nan
+
     print('create_esri_grid_plot|ascii_data : ', ascii_data)
-    print('create_esri_grid_plot|line1 : ', line1)
+    print('create_esri_grid_plot|ncols : ', ncols)
+    print('create_esri_grid_plot|nrows : ', nrows)
+    print('create_esri_grid_plot|xllcorner : ', xllcorner)
+    print('create_esri_grid_plot|yllcorner : ', yllcorner)
+    print('create_esri_grid_plot|cellsize : ', cellsize)
+    print('create_esri_grid_plot|NODATA_value : ', NODATA_value)
+
+    cellsize = 0.25
+    fig, ax = plt.subplots()
+    ax.set_title('Inundation Map')
+    # img_plot = ax.imshow(ascii_data, cmap='jet')
+    map_extent = [
+        0, 0 + ncols * cellsize,
+        0, 0 + nrows * cellsize]
+
+    img_plot = ax.imshow(ascii_data, extent=map_extent, cmap='jet')
+    cbar = fig.colorbar(img_plot)
+    # cbar = plt.colorbar(img_plot, orientation='vertical', shrink=0.5, aspect=14)
+    cbar.set_label('Water Level (m)')
+    ax.grid(True)
+    # plt.show()
+    plt.savefig(plot_image_file, bbox_inches='tight')
 
 
 if __name__ == '__main__':
@@ -231,4 +262,8 @@ if __name__ == '__main__':
         print("Exception|e : ", str(e))
 
 if __name__ == '__main__':
-    ascii_file = ''
+    output_dir = '/home/hasitha/PycharmProjects/ShapeFile/output'
+    ascii_file = '/home/hasitha/PycharmProjects/ShapeFile/output/2020-07-09/max_wl_ascii.asc'
+    plot_image_file = os.path.join(output_dir, 'ascii_plot.png')
+    create_esri_grid_plot(ascii_file, plot_image_file)
+
