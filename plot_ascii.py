@@ -232,8 +232,8 @@ def create_esri_grid_plot(ascii_file, plot_image_file):
     # cbar = plt.colorbar(img_plot, orientation='vertical', shrink=0.5, aspect=14)
     cbar.set_label('Water Level (m)')
     ax.grid(True)
-    # plt.show()
-    plt.savefig(plot_image_file, bbox_inches='tight')
+    plt.show()
+    #plt.savefig(plot_image_file, bbox_inches='tight')
 
 
 if __name__ == '__main__':
